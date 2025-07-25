@@ -15,9 +15,9 @@ This Python project fetches real-time weather data from the [OpenWeatherMap API]
 
 ## 🛠 Requirements
 
-Make sure you have Python installed, then install the following packages:
+Make sure you have Python installed, then install the following packages:/ use google colab it does not require further installation.
 
 ```bash
 pip install requests matplotlib
 
-or use google colab it does not require further installation.
+
