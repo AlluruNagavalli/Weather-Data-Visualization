@@ -1,0 +1,43 @@
+import requests
+import matplotlib.pyplot as plt
+
+# Your OpenWeatherMap API Key
+API_KEY = "438226e49ddf0dbd9e41fbce26ce240a"  # ← Replace with your actual API key
+
+# List of cities
+cities = ["Hyderabad", "Mumbai", "Delhi", "Chennai", "Bangalore"]
+
+# Empty lists to store data
+temperatures = []
+weather_descriptions = []
+
+# Fetch weather data for each city
+for city in cities:
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        data = response.json()
+        temp = data["main"]["temp"]
+        description = data["weather"][0]["description"]
+
+        temperatures.append(temp)
+        weather_descriptions.append(description)
+
+        print(f"{city}: {temp}°C, {description}")
+    else:
+        print(f"Failed to get data for {city}")
+        temperatures.append(None)
+        weather_descriptions.append("N/A")
+
+# 🔹 Plotting the temperatures
+plt.figure(figsize=(10, 6))
+plt.bar(cities, temperatures, color='skyblue')
+plt.xlabel("City")
+plt.ylabel("Temperature (°C)")
+plt.title("Current Temperature in Indian Cities")
+plt.grid(axis='y')
+plt.tight_layout()
+
+# Show the plot
+plt.show()
